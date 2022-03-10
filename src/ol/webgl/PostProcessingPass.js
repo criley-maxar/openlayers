@@ -2,7 +2,7 @@
  * @module ol/webgl/PostProcessingPass
  */
 
-import {getUid} from '../util.js';
+import { getUid } from '../util.js';
 
 const DEFAULT_VERTEX_SHADER = `
   precision mediump float;
@@ -377,25 +377,27 @@ class WebGLPostProcessingPass {
         // fill texture slots
         gl.uniform1i(uniform.location, textureSlot++);
       } else if (Array.isArray(value)) {
-        switch (value.length) {
-          case 2:
-            gl.uniform2f(uniform.location, value[0], value[1]);
-            return;
-          case 3:
-            gl.uniform3f(uniform.location, value[0], value[1], value[2]);
-            return;
-          case 4:
-            gl.uniform4f(
-              uniform.location,
-              value[0],
-              value[1],
-              value[2],
-              value[3]
-            );
-            return;
-          default:
-            return;
-        }
+        console.log('setting 1fv', value)
+        gl.uniform1fv(uniform.location, value);
+        // switch (value.length) {
+        //   case 2:
+        //     gl.uniform2f(uniform.location, value[0], value[1]);
+        //     return;
+        //   case 3:
+        //     gl.uniform3f(uniform.location, value[0], value[1], value[2]);
+        //     return;
+        //   case 4:
+        //     gl.uniform4f(
+        //       uniform.location,
+        //       value[0],
+        //       value[1],
+        //       value[2],
+        //       value[3]
+        //     );
+        //     return;
+        //   default:
+        //     return;
+        // }
       } else if (typeof value === 'number') {
         gl.uniform1f(uniform.location, value);
       }
